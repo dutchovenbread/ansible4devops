@@ -1,0 +1,14 @@
+---
+- hosts: all
+  tasks:
+    - name: Ensure chrony (for time synchronization) is installed
+      dnf:
+        name: chrony
+        state: present
+      become: yes
+    - name: Ensure chrony is running
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
+      become: yes
